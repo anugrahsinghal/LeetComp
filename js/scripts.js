@@ -703,7 +703,7 @@ function _SearchTotalSalaryFilter() {
     }
     tempData = [];
     for (i = 0; i < window.data.length; i++) {
-        yoe = parseFloat(window.data[i][keyMap["cleanSalary"]]);
+        yoe = parseFloat(window.data[i][keyMap["cleanSalaryTotal"]]);
         if (yoe >= minTotal && yoe <= maxTotal) {
             tempData.push(window.data[i]);
         }
