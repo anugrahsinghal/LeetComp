@@ -629,10 +629,12 @@ function _SearchBaseSalaryFilter() {
         minBase = parseFloat(minBase)
     }
     if (maxBase.length == 0) {
-        maxBase = 12000000;// 120 lacs
+        maxBase = 120;// 120 lacs
     } else {
         maxBase = parseFloat(maxBase)
     }
+    maxTotal = maxTotal * 100000; 
+    minTotal = minTotal * 100000; 
 
     window.data = [];
     if (document.getElementById("search").value.length > 2) {
@@ -664,5 +666,52 @@ function _SearchBaseSalaryFilter() {
     resetData();
 }
 
+function _SearchTotalSalaryFilter() {
+    minTotal = document.getElementById("minTotal").value;
+    maxTotal = document.getElementById("maxTotal").value;
+    if (minTotal.length == 0) {
+        minTotal = 0;
+    } else {
+        minTotal = parseFloat(minTotal)
+    }
+    if (maxTotal.length == 0) {
+        maxTotal = 120;// 120 lacs
+    } else {
+        maxTotal = parseFloat(maxTotal)
+    }
+    maxTotal = maxTotal * 100000; 
+    minTotal = minTotal * 100000; 
+
+    window.data = [];
+    if (document.getElementById("search").value.length > 2) {
+        search(document.getElementById("search"));
+    } else {
+        if (document.getElementById("fullTimeButton").classList.contains("active")) {
+            for (i = 0; i < allData.length; i++) {
+                if (allData[i][keyMap["yrOrPm"]] == "yearly") {
+                    window.data.push(allData[i]);
+
+                }
+            }
+        } else if (document.getElementById("internshipButton").classList.contains("active")) {
+            for (i = 0; i < allData.length; i++) {
+                if (allData[i][keyMap["yrOrPm"]] == "monthly") {
+                    window.data.push(allData[i]);
+                }
+            }
+        }
+    }
+    tempData = [];
+    for (i = 0; i < window.data.length; i++) {
+        yoe = parseFloat(window.data[i][keyMap["cleanSalary"]]);
+        if (yoe >= minTotal && yoe <= maxTotal) {
+            tempData.push(window.data[i]);
+        }
+    }
+    window.data = tempData;
+    resetData();
+}
+
 const SearchYoeFilter = debounce((e) => _SearchYoeFilter());
 const SearchBaseSalaryFilter = debounce((e) => _SearchBaseSalaryFilter());
+const SearchTotalSalaryFilter = debounce((e) => _SearchTotalSalaryFilter());
