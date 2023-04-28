@@ -7,7 +7,7 @@ keyMap = {
     "id": 0,
     "voteCount": 1,
     "viewCount": 2,
-    "date": 3,
+    "date": 3,//yyyy-mm-dd
     "company": 4,
     "role": 5,
     "cleanYoe": 6,
@@ -633,8 +633,8 @@ function _SearchBaseSalaryFilter() {
     } else {
         maxBase = parseFloat(maxBase)
     }
-    maxTotal = maxTotal * 100000; 
-    minTotal = minTotal * 100000; 
+    minBase = maxBase * 100000; 
+    minBase = minBase * 100000; 
 
     window.data = [];
     if (document.getElementById("search").value.length > 2) {
