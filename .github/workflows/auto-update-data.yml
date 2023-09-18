@@ -54,5 +54,5 @@ jobs:
               repo,
               head: `update-$(date +'%Y%m%d')`,
               base: 'main',
-              body: [ 'Automatic LeetCode data update' ]
+              body: 'Automatic LeetCode data update'
             });
