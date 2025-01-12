@@ -25,7 +25,7 @@ jobs:
           python-version: "${{ matrix.python-version }}"
 
       - name: Install poetry
-        run: pip install poetry
+        run: pip install poetry==1.8.5
         
       - name: Poetry lock
         run: poetry lock --no-update
